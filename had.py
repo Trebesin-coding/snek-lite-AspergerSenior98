@@ -27,7 +27,7 @@ class segment: #Myslím že tohle je linked list !!! 😎 ale udělám to přes 
     def __init__(self, double, dir):
         self.dir = dir
         self.coor = (double)
-        self.rect = pygame.image.load("pygame/body.png").convert_alpha()
+        self.rect = pygame.image.load("body.png").convert_alpha()
         self.surf = self.rect.get_rect(midbottom=self.coor)
         self.NextSegment = None
     def Grow(self):
@@ -64,7 +64,7 @@ class segment: #Myslím že tohle je linked list !!! 😎 ale udělám to přes 
 class Head(segment):
     def __init__(self, double, dir):
         super().__init__(double, dir)
-        self.rect = pygame.image.load("pygame/head.png").convert_alpha()
+        self.rect = pygame.image.load("head.png").convert_alpha()
         self.moving = True
     def canIMove(self):
         targetCoor = AddDouble(self.coor, self.dir)
@@ -77,7 +77,7 @@ class Head(segment):
             self.Move()
     def Crash(self):
         self.moving = False
-        self.rect = pygame.image.load("pygame/dead.png").convert_alpha()
+        self.rect = pygame.image.load("dead.png").convert_alpha()
         self.Blit()
 
 class Fruit:
@@ -89,7 +89,7 @@ class Fruit:
                 break
         self.coor = coor
         self.active = active
-        self.rect = pygame.image.load("pygame/fruit.png").convert_alpha()
+        self.rect = pygame.image.load("fruit.png").convert_alpha()
         self.surf = self.rect.get_rect(midbottom=self.coor)
     def Blit(self):
         self.surf = self.rect.get_rect(midbottom=self.coor)
@@ -121,7 +121,7 @@ while running:
     #Render
     
     
-    if elapsed_time > 200 and head.moving == True: # at fps nelimituje inputy
+    if elapsed_time > 120 and head.moving == True: # at fps nelimituje inputy
         screen.fill("Black")
         ##Player
         head.canIMove()
@@ -131,7 +131,7 @@ while running:
             if fruittime > nextfruit:
                 fruit = Fruit(True)
                 fruittime = 0
-                nextfruit = random.randint(2000, 4000)
+                nextfruit = random.randint(1200, 3200)
         elif head.moving == True:
             fruit.Blit()
     pygame.display.update()
